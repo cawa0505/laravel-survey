@@ -1,0 +1,5 @@
+{% if errors.any %}
+    {% for error in errors.all %}
+        <p class="error-message">{{ error }}</p>
+    {% endfor %}
+{% endif %}

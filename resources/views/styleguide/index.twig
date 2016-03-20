@@ -1,0 +1,413 @@
+{% extends '../templates/styleguide.twig' %}
+
+{% block content %}
+
+<div class="inner">
+    <h1>Styleguide</h1>
+
+    <hr>
+
+    <h2>Type</h2>
+
+    <h3>Headings</h3>
+
+    <h1>heading 1</h1>
+    <h2>heading 2</h2>
+    <h3>heading 3</h3>
+    <h4>heading 4</h4>
+    <h5>heading 5</h5>
+    <h6>heading 6</h6>
+
+    <h2>Paragraphs</h2>
+
+    <p>This is a lead paragraph.
+    <p>
+        This is an ordinary paragraph that is long enough to wrap to multiple
+        lines so that you can see how the line spacing looks.
+    </p>
+    <p>
+        A paragraph (from the Greek paragraphos, "to write beside" or "written
+        beside") is a self-contained unit of a discourse in writing dealing with
+        a particular point or idea. A paragraph consists of one or more sentences.
+        Though not required by the syntax of any language, paragraphs are usually
+        an expected part of formal writing, used to organize longer prose.
+    </p>
+
+    <h2>Inline Elements</h2>
+
+    <p><a href="#">This is a text link</a></p>
+
+    <p><strong>Strong is used to indicate strong importance</strong></p>
+
+    <p><em>This text has added emphasis</em></p>
+
+    <p>
+        The <b>b element</b> is stylistically different text from normal text,
+        without any special importance.
+    </p>
+
+    <p>The <i>i element</i> is text that is set off from the normal text</p>
+
+    <p>
+        The <u>u element</u> is text with an unarticulated, though explicitly
+        rendered, non-textual annotation
+    </p>
+
+    <p><del>This text is deleted</del> and <ins>This text is inserted</ins></p>
+
+    <p><s>This text has a strikethrough</s></p>
+
+    <p>Superscript<sup>®</sup></p>
+
+    <p>Subscript for things like H<sub>2</sub>O</p>
+
+    <p><small>This small text is small for for fine print, etc.</small></p>
+
+    <p>Abbreviation: <abbr title="HyperText Markup Language">HTML</abbr></p>
+
+    <p>Keyboard input: <kbd>Cmd</kbd></p>
+
+    <p>
+        <q cite="https://developer.mozilla.org/en-US/docs/HTML/Element/q">
+            This text is a short inline quotation
+        </q>
+    </p>
+
+    <p><cite>This is a citation</cite>
+
+    </p><p>The <dfn>dfn element</dfn> indicates a definition.</p>
+
+    <p>The <mark>mark element</mark> indicates a highlight</p>
+
+    <p><code>This is what inline code looks like.</code></p>
+
+    <p><samp>This is sample output from a computer program</samp></p>
+
+    <p>The <var>variable element</var>, such as <var>x</var> = <var>y</var></p>
+
+    <hr>
+
+    <h2>Forms</h2>
+
+    <div class="form-field">
+        <label for="name" class="form-field__label">Name</label>
+        <input type="text" id="name" class="input">
+    </div>
+
+    <div class="form-field">
+        <label for="email" class="form-field__label">Email</label>
+        <input type="email" id="email" class="input">
+    </div>
+
+    <div class="form-field">
+        <label for="employment_status" class="form-field__label">
+            Employment status
+        </label>
+        <select name="employment_status" id="employment_status" class="input">
+            <option value="">Please select</option>
+        </select>
+    </div>
+
+    <div class="form-field">
+        <label class="form-field__label">Radio group</label>
+        <ul class="radio-group">
+            <li class="radio-group__item">
+                <input type="radio" id="option_1" name="radio_group" class="radio-group__input">
+                <label for="option_1" class="radio-group__label">Option 1</label>
+            </li>
+            <li class="radio-group__item">
+                <input type="radio" id="option_2" name="radio_group" class="radio-group__input">
+                <label for="option_2" class="radio-group__label">Option 2</label>
+            </li>
+        </ul>
+    </div>
+
+    <div class="form-field">
+        <label class="form-field__label">Radio group (inline)</label>
+        <ul class="radio-group radio-group--inline">
+            <li class="radio-group__item radio-group__item--inline">
+                <input type="radio" id="option_3" name="radio_group_1" class="radio-group__input">
+                <label for="option_3" class="radio-group__label">Option 1</label>
+            </li>
+            <li class="radio-group__item radio-group__item--inline">
+                <input type="radio" id="option_4" name="radio_group_1" class="radio-group__input">
+                <label for="option_4" class="radio-group__label">Option 2</label>
+            </li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>Buttons</h2>
+
+    <a href="#" class="button">Standard button</a>
+    <a href="#" class="button button--small">Small button</a>
+
+    <hr>
+
+    <h2>Progressive pagination</h2>
+
+    <p>JavaScript pagination.</p>
+    <div class="pagination" data-pagination>
+        <div data-pagination-page>
+            Section 1
+        </div>
+        <div data-pagination-page>
+            Section 2
+        </div>
+        <div data-pagination-page>
+            Section 3
+        </div>
+        <nav class="pagination__nav">
+            <div class="pagination__prev">
+                <button class="button pagination__prev" data-pagination-back>Back</button>
+                <button class="button pagination__prev pagination__nav-item" data-pagination-prev>Previous</button>
+            </div>
+            <div class="pagination__next">
+                <button class="button pagination__nav-item" data-pagination-next>Next</button>
+                <button type="submit" class="button" data-pagination-continue>Continue</button>
+            </div>
+        </nav>
+    </div>
+
+    <p>JavaScript disabled on this, same markup as above.</p>
+    <div class="pagination" -data-pagination>
+        <div data-pagination-page>
+            Section 1
+        </div>
+        <div data-pagination-page>
+            Section 2
+        </div>
+        <div data-pagination-page>
+            Section 3
+        </div>
+        <nav class="pagination__nav">
+            <div class="pagination__prev">
+                <button class="button pagination__prev" data-pagination-back>Back</button>
+                <button class="button pagination__prev pagination__nav-item" data-pagination-prev>Previous</button>
+            </div>
+            <div class="pagination__next">
+                <button class="button pagination__nav-item" data-pagination-next>Next</button>
+                <button type="submit" class="button" data-pagination-continue>Continue</button>
+            </div>
+        </nav>
+    </div>
+
+    <hr>
+
+    <h2>Slider</h2>
+
+    <p>Get sets with a default value</p>
+
+    <div class="form-field form-field--slider">
+        <div class="slider" data-slider>
+            <div class="slider__labels">
+                <label class="slider__label slider__label--min">Strongly Disagree</label>
+                <label class="slider__label slider__label--max">Strongly Agree</label>
+            </div>
+            <div
+                data-ui-slider
+                data-ui-slider-value="3"
+                data-ui-slider-min="1"
+                data-ui-slider-max="5">
+            </div>
+            <div class="slider__values">
+                <div class="slider__value">1</div>
+                <div class="slider__value">2</div>
+                <div class="slider__value">3</div>
+                <div class="slider__value">4</div>
+                <div class="slider__value">5</div>
+            </div>
+            <input class="slider__input" type="text" name="slider">
+            <div class="slider__input">
+                {% for i in 1..5 %}
+                    {{ form_radio('slider1', i) }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <p>Required to have interaction to be valid</p>
+
+    <div class="form-field form-field--slider">
+        <div
+            class="slider"
+            data-slider
+            data-slider-required>
+            <div class="slider__labels">
+                <label class="slider__label slider__label--min">Strongly Disagree</label>
+                <label class="slider__label slider__label--max">Strongly Agree</label>
+            </div>
+            <div
+                data-ui-slider
+                data-ui-slider-value="3"
+                data-ui-slider-min="1"
+                data-ui-slider-max="5">
+            </div>
+            <div class="slider__values">
+                <div class="slider__value">1</div>
+                <div class="slider__value">2</div>
+                <div class="slider__value">3</div>
+                <div class="slider__value">4</div>
+                <div class="slider__value">5</div>
+            </div>
+            <div class="slider__input">
+                {% for i in 1..5 %}
+                    {{ form_radio('slider2', i) }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <p>Starts at position 1, doesn't require interaction to be valid</p>
+
+    <div class="form-field form-field--slider">
+        <div
+            class="slider"
+            data-slider
+            data-slider-required>
+            <div class="slider__labels">
+                <label class="slider__label slider__label--min">Strongly Disagree</label>
+                <label class="slider__label slider__label--max">Strongly Agree</label>
+            </div>
+            <div
+                data-ui-slider
+                data-ui-slider-value="1"
+                data-ui-slider-min="1"
+                data-ui-slider-max="5">
+            </div>
+            <div class="slider__values">
+                <div class="slider__value">1</div>
+                <div class="slider__value">2</div>
+                <div class="slider__value">3</div>
+                <div class="slider__value">4</div>
+                <div class="slider__value">5</div>
+            </div>
+            <div class="slider__input">
+                {% for i in 1..5 %}
+                    {{ form_radio('slider3', i) }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <h3>Scale</h3>
+
+    <div class="form-field form-field--scale">
+        <div class="scale">
+            <div class="scale__label">
+                Strongly Disagree
+            </div>
+            <div class="scale__value">
+                <input type="radio" name="scale">
+            </div>
+            <div class="scale__value">
+                <input type="radio" name="scale">
+            </div>
+            <div class="scale__value">
+                <input type="radio" name="scale">
+            </div>
+            <div class="scale__value">
+                <input type="radio" name="scale">
+            </div>
+            <div class="scale__value">
+                <input type="radio" name="scale">
+            </div>
+            <div class="scale__label">
+                Strongly Agree
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>Choice</h2>
+
+    <div class="form-field form-field--choice">
+        <ul class="choice">
+            <li class="choice__value">
+                <label>
+                    <input type="radio" name="choice" id="0">
+                    Choice 1
+                </label>
+            </li>
+            <li class="choice__value">
+                <label>
+                    <input type="radio" name="choice" id="1">
+                    Choice 2
+                </label>
+            </li>
+            <li class="choice__value">
+                <label>
+                    <input type="radio" name="choice" id="2">
+                    Choice 3
+                </label>
+            </li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>Header</h2>
+
+    {% include 'includes/header.twig' %}
+
+    <hr>
+
+    <h2>Footer</h2>
+
+    {% include 'includes/footer.twig' %}
+
+    <hr>
+
+    <h2>Progress</h2>
+
+    <div class="progress">
+        <div class="progress__bar" style="width: 34%;"></div>
+    </div>
+
+    <hr>
+
+    <h2>Question</h2>
+
+    <div class="question">
+        <h3 class="question__topic">Life satisfaction</h3>
+        <h2 class="question__title">
+            Overall, how satisfied are you with life nowadays?
+        </h2>
+    </div>
+
+    <hr>
+
+    <h2>Domain</h2>
+
+    <div class="domain">
+        <h1 class="domain__title">Overall wellbeing</h1>
+    </div>
+
+    <hr>
+
+    <h2>Building</h2>
+
+    <div data-building="57">
+        {% include 'includes/building.twig' %}
+    </div>
+
+    <hr>
+
+    <h2>Results</h2>
+
+    <div class="results">
+        <div class="results__set">
+            <div class="text--center">
+                <h3>Be</h3>
+                <div class="results__score">
+                    67
+                </div>
+            </div>
+        </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends '../templates/default.twig' %}
+
+{% block content %}
+
+    {{ data.text }}
+    {{ data.questions.text }}
+
+    <div>
+        <form>
+            {% for question in data %}
+                <div class="pagination__page" data-pagination-page>
+                    <div class="question">
+                        <h1>{{ question.text }}</h3>
+                        <h2>{{ question.small_text }}</h2>
+                        {% include 'survey/question_type/' ~ question.type ~ '.twig' %}
+                    </div>
+                </div>
+            {% endfor %}
+        </form>
+    </div>
+
+{% endblock %}

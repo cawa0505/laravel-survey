@@ -1,0 +1,26 @@
+{% extends '../templates/admin.twig' %}
+
+{% block content %}
+
+
+    <div class="container admin-container">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="#">
+                    Laravel Survey
+                  </a>
+                </div>
+                <div class="navbar-right">
+                    <p class="navbar-text">
+                        {{ user.email }}
+                        <a href="/auth/logout">Logout</a>
+                    </p>
+                </div>
+            </div>
+        </nav>
+
+        <p><a href="/export/csv" class="btn btn-default">Export CSV</a></p>
+    </div>
+
+{% endblock %}

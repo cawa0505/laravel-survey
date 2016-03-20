@@ -1,0 +1,6 @@
+{% if session_get('message') %}
+    <div class="alert alert-{{ session_get('message.class') }}">
+        <a href="#close" class="close" data-dismiss="alert">&times;</a>
+        {{ session_get('message.content') }}
+    </div>
+{% endif %}

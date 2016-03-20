@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js svg rgba">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Laravel Survey</title>
+    </head>
+    <body>
+        <div class="wrapper">
+            {% include 'includes/header.twig' %}
+
+                <div class="inner">
+                    <main class="content content--{{ page }}">
+                        {% include 'includes/message.twig' %}
+                        {% include 'includes/errors.twig' %}
+                        {% block content %}{% endblock %}
+                    </main>
+                    {% block outside_main %}{% endblock %}
+                </div>
+
+            {% include 'includes/footer.twig' %}
+        </div>
+    </body>
+</html>
