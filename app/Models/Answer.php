@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,4 +14,9 @@ class Answer extends Question
         'visable',
         'order',
     ];
+
+    public function question()
+    {
+        return $this->belongsTo('App\Models\Question', 'question_id');
+    }
 }

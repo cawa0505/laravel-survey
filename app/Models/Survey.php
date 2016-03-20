@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,4 +22,9 @@ class Survey extends Model
         'end_text',
         'url_callback',
     ];
+
+    public function groups()
+    {
+        return $this->hasMany('App\Models\Group', 'survey_id');
+    }
 }
