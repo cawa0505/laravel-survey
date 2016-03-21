@@ -1,27 +1,24 @@
 <?php
 
-Route::get('/', [
-    'uses' => 'TestController@test'
-]);
-
-Route::get('/[survey]/welcome', [
+Route::get('/{survey}/welcome', [
     'uses' => 'SurveyController@getStart'
 ]);
 
-Route::post('/[survey]/welcome', [
-    'uses' => 'SurveyController@postStart'
+Route::post('/{survey}', [
+    'uses' => 'SurveyController@postStart',
+    'as' => 'survey.create',
 ]);
 
-Route::get('/[survey]/[group]', [
+Route::get('/{survey}/complete', [
+    'uses' => 'SurveyController@getComplete',
+]);
+
+Route::get('/{survey}/{group}', [
     'uses' => 'SurveyController@getGroup'
 ]);
 
-Route::post('/[survey]/[group]', [
+Route::post('/{survey}/{group}', [
     'uses' => 'SurveyController@postGroup'
-]);
-
-Route::get('/[survey]/complete', [
-    'uses' => 'SurveyController@getComplete'
 ]);
 
 Route::get('/admin', [

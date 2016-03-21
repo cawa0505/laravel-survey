@@ -8,9 +8,12 @@ use App\Models\Survey;
 
 class SurveyController extends Controller
 {
-    public function getStart()
+    public function getStart($slug)
     {
+        $survey = Survey::where('slug', $slug)->first();
 
+        return view('survey.welcome')
+            ->with('survey', $survey);
     }
 
     public function postStart()
@@ -28,8 +31,11 @@ class SurveyController extends Controller
 
     }
 
-    public function getComplete()
+    public function getComplete($slug)
     {
+        $survey = Survey::where('slug', $slug)->first();
 
+        return view('survey.complete')
+            ->with('survey', $survey);
     }
 }
