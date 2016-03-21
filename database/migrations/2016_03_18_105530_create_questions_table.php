@@ -25,7 +25,7 @@ class CreateQuestionsTable extends Migration
             $table->timestamps();
 
             $table->foreign('group_id')->references('id')->on('groups');
-            //$table->foreign('parent_question_id')->references('id')->on('questions');
+            $table->foreign('parent_question_id')->references('id')->on('questions');
         });
     }
 
