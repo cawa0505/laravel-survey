@@ -2,12 +2,11 @@
 
 {% block content %}
 
-    {{ data.text }}
-    {{ data.questions.text }}
+    {{ question.type }}
 
     <div>
-        <form>
-            {% for question in data %}
+        {{ form_open() }}
+            {% for question in data.questions %}
                 <div class="pagination__page" data-pagination-page>
                     <div class="question">
                         <h1>{{ question.text }}</h3>
@@ -16,7 +15,7 @@
                     </div>
                 </div>
             {% endfor %}
-        </form>
+        {{ form_close() }}
     </div>
 
 {% endblock %}
