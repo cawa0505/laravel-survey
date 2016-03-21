@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Faker\Factory as Faker;
-use App\Survey;
+use App\Models\Survey;
 
 class GroupsTableSeeder extends Seeder
 {
@@ -21,6 +21,7 @@ class GroupsTableSeeder extends Seeder
         foreach (range(1,20) as $index) {
             DB::table('groups')->insert([
                 'survey_id' => $faker->randomElement($surveys),
+                'slug' => str_replace(" ", "-", str_replace(["?", "'", '"', "!", "&", "£", "$", ",", "(", ")", "."], "", strtolower($faker->text($maxNbChars = 20)))),
                 'text' => $faker->sentence($nbWords = 6, $variableNbWords = true),
                 'small_text' => $faker->paragraph($nbSentences = 1, $variableNbSentences = true),
                 'order' => $faker->numberBetween(1, 99),

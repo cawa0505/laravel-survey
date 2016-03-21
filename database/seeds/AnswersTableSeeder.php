@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Faker\Factory as Faker;
-use App\Question;
+use App\Models\Question;
 
 class AnswersTableSeeder extends Seeder
 {

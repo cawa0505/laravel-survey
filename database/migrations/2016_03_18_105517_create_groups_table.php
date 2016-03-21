@@ -15,6 +15,7 @@ class CreateGroupsTable extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('survey_id')->unsigned();
+            $table->string('slug')->unique();
             $table->longText('text');
             $table->mediumText('small_text')->nullable();
             $table->integer('order');

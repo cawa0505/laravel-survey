@@ -3,8 +3,8 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Faker\Factory as Faker;
-use App\Group;
-use App\Question;
+use App\Models\Group;
+use App\Models\Question;
 
 class ArrayQuestionsTableSeeder extends Seeder
 {
