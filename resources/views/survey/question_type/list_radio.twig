@@ -1,12 +1,7 @@
 <div class="form-field">
     <ul class="choice">
-        {% for key,value in question.choices %}
-            <li class="choice__value">
-                <label>
-                    {{ form_radio(question.slug, key, key == response[question.slug] ? response[question.slug] is null ? false : true : false, question.input_options) }}
-                    {{ value }}
-                </label>
-            </li>
+        {% for answer in question.answers %}
+            <li class="choice__value">{{ answer.value }} - {{ answer.text }}</li>
         {% endfor %}
     </ul>
 </div>

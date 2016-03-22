@@ -7,7 +7,7 @@
 
     <div>
         {{ form_open() }}
-            {% for question in questions %}
+            {% for question in survey.questions %}
                 <h2>{{ question.text }}</h3>
                 <p>{{ question.small_text }}</p>
                 {% include 'survey/question_type/' ~ question.type ~ '.twig' %}

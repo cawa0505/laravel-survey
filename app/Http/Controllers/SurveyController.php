@@ -30,7 +30,8 @@ class SurveyController extends Controller
         }])->whereSlug($surveySlug)->first();
 
         return view('survey.form')
-            ->with('survey', $survey);
+            ->with('survey', $survey)
+            ->with('group', $survey->groups->first());
     }
 
     public function postGroup()
