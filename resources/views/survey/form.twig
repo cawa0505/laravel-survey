@@ -3,18 +3,14 @@
 {% block content %}
 
     <h1>{{ group.text }}</h1>
-    <h2>{{ group.small_text }}</h2>
+    <p>{{ group.small_text }}</p>
 
     <div>
         {{ form_open() }}
             {% for question in questions %}
-                <div class="pagination__page" data-pagination-page>
-                    <div class="question">
-                        <h1>{{ question.text }}</h3>
-                        <h2>{{ question.small_text }}</h2>
-                        {% include 'survey/question_type/' ~ question.type ~ '.twig' %}
-                    </div>
-                </div>
+                <h2>{{ question.text }}</h3>
+                <p>{{ question.small_text }}</p>
+                {% include 'survey/question_type/' ~ question.type ~ '.twig' %}
             {% endfor %}
         {{ form_close() }}
     </div>
