@@ -27,4 +27,9 @@ class Survey extends Model
     {
         return $this->hasMany('App\Models\Group', 'survey_id');
     }
+
+    public function posts()
+    {
+        return $this->hasManyThrough('App\Models\Question', 'App\Models\Group');
+    }
 }
