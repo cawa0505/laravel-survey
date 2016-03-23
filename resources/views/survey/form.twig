@@ -2,13 +2,15 @@
 
 {% block content %}
 
-    <h1>{{ group.text }}</h1>
+    <h1>{{ survey.text }}</h1>
+
+    <h2>{{ group.text }}</h2>
     <p>{{ group.small_text }}</p>
 
     <div>
         {{ form_open() }}
             {% for question in survey.questions %}
-                <h2>{{ question.text }}</h3>
+                <h3>{{ question.text }}</h3>
                 <p>{{ question.small_text }}</p>
                 {% include 'survey/question_type/' ~ question.type ~ '.twig' %}
             {% endfor %}

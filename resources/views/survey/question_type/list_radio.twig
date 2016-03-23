@@ -1,7 +1,12 @@
 <div class="form-field">
     <ul class="choice">
         {% for answer in question.answers %}
-            <li class="choice__value">{{ answer.value }} - {{ answer.text }}</li>
+            <li class="choice__value">
+                <label>
+                    {{ form_radio(survey.id ~ 'x' ~ group.id ~ 'x' ~ question.id, answer.value, false) }}
+                    {{ answer.text }}
+                </label>
+            </li>
         {% endfor %}
     </ul>
 </div>
