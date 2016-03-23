@@ -1,0 +1,5 @@
+{% for sub_question in question.sub_questions %}
+    {% for answer in question.answers %}
+	    {{ sub_question.text }} - {{ answer.text }} |
+	{% endfor %}
+{% endfor %}

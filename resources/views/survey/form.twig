@@ -10,10 +10,15 @@
     <div>
         {{ form_open() }}
             {% for question in survey.questions %}
-                <h3>{{ question.text }}</h3>
-                <p>{{ question.small_text }}</p>
-                {% include 'survey/question_type/' ~ question.type ~ '.twig' %}
+                {% if question.type != 'boilerplate' and question.type != null %}
+                    <h3>{{ question.text }}</h3>
+                    <p>{{ question.small_text }}</p>
+                {% endif %}
+                {% if question.type != null %}
+                    {% include 'survey/question_type/' ~ question.type ~ '.twig' %}
+                {% endif %}
             {% endfor %}
+            {{ form_submit() }}
         {{ form_close() }}
     </div>
 
