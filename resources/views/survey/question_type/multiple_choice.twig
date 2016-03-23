@@ -1,3 +1,5 @@
 <div class="form-field">
-    {{ form_textarea(question.slug, response[question.slug], question.input_options) }}
+    {% for answer in question.answers %}
+        <input type="checkbox" name="{{ survey.id ~ 'x' ~ group.id ~ 'x' ~ question.id }}" value="{{ answer.value }}">{{ answer.text }}</input>
+    {% endfor %}
 </div>

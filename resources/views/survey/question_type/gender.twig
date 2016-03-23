@@ -1,3 +1,14 @@
 <div class="form-field">
-    {{ form_textarea(question.slug, response[question.slug], question.input_options) }}
+    <ul class="choice">
+        <li class="choice__value">
+            <label>
+                {{ form_radio(survey.id ~ 'x' ~ group.id ~ 'x' ~ question.id, 1, false) }} Male
+            </label>
+        </li>
+        <li class="choice__value">
+            <label>
+                {{ form_radio(survey.id ~ 'x' ~ group.id ~ 'x' ~ question.id, 2, false) }} Female
+            </label>
+        </li>
+    </ul>
 </div>
