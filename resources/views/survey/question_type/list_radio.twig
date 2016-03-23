@@ -1,0 +1,7 @@
+<div class="form-field">
+    <ul class="choice">
+        {% for answer in question.answers %}
+            <li class="choice__value">{{ answer.value }} - {{ answer.text }}</li>
+        {% endfor %}
+    </ul>
+</div>

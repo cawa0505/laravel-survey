@@ -1,0 +1,18 @@
+{% extends '../templates/default.twig' %}
+
+{% block content %}
+
+    <h1>{{ group.text }}</h1>
+    <p>{{ group.small_text }}</p>
+
+    <div>
+        {{ form_open() }}
+            {% for question in survey.questions %}
+                <h2>{{ question.text }}</h3>
+                <p>{{ question.small_text }}</p>
+                {% include 'survey/question_type/' ~ question.type ~ '.twig' %}
+            {% endfor %}
+        {{ form_close() }}
+    </div>
+
+{% endblock %}

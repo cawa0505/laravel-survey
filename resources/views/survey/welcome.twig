@@ -1,0 +1,16 @@
+{% extends '../templates/default.twig' %}
+
+{% block content %}
+
+    <h1>{{ survey.text }}</h1>
+
+    <h2>{{ survey.small_text }}</h2>
+
+    <p>{{ survey.welcome_text }}</p>
+    <p>{{ survey.description_text }}</p>
+
+    {{ form_open() }}
+        <button type="submit">Start</button>
+    {{ form_close() }}
+
+{% endblock %}

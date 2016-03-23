@@ -1,31 +1,28 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Routes File
-|--------------------------------------------------------------------------
-|
-| Here is where you will register all of the routes in an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
+Route::get('/{survey}/welcome', [
+    'uses' => 'SurveyController@getStart'
+]);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::post('/{survey}', [
+    'uses' => 'SurveyController@postStart',
+    'as' => 'survey.create',
+]);
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/
+Route::get('/{survey}/complete', [
+    'uses' => 'SurveyController@getComplete',
+]);
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
+Route::get('/{survey}/{group}', [
+    'uses' => 'SurveyController@getGroup'
+]);
+
+Route::post('/{survey}/{group}', [
+    'uses' => 'SurveyController@postGroup'
+]);
+
+Route::get('/admin', [
+    'as' =>'admin.index',
+    'uses' => 'AdminController@index',
+    'middleware' => ['auth'],
+]);
