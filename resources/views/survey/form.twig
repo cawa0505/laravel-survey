@@ -10,13 +10,11 @@
     <div>
         {{ form_open() }}
             {% for question in survey.questions %}
-                {% if question.type != 'boilerplate' and question.type != null %}
+                {% if question.type != 'boilerplate' %}
                     <h3>{{ question.text }}</h3>
                     <p>{{ question.small_text }}</p>
                 {% endif %}
-                {% if question.type != null %}
-                    {% include 'survey/question_type/' ~ question.type ~ '.twig' %}
-                {% endif %}
+                {% include 'survey/question_type/' ~ question.type ~ '.twig' %}
             {% endfor %}
             {{ form_submit() }}
         {{ form_close() }}

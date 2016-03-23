@@ -24,7 +24,8 @@ class SurveyController extends Controller
     public function getGroup($surveySlug, $groupSlug)
     {
         $survey = Survey::with(['questions' => function($query) use ($groupSlug) {
-            $query->where('groups.slug', $groupSlug);
+            $query->where('groups.slug', $groupSlug)
+            ->where('questions.parent_question_id', null);
         }, 'groups' => function($query) use ($groupSlug) {
             $query->where('groups.slug', $groupSlug);
         }])->whereSlug($surveySlug)->first();
