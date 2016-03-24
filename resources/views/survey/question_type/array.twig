@@ -1,5 +1,16 @@
-{% for sub_question in question.sub_questions %}
-    {% for answer in question.answers %}
-	    {{ sub_question.text }} - {{ answer.text }} |
+<table border="1">
+	<tr>
+		<td></td>
+		{% for answer in question.answers %}
+		    <td>{{ answer.text }}</td>
+		{% endfor %}
+	</tr>
+	{% for sub_question in question.sub_questions %}
+		<tr>
+			<td>{{ sub_question.text }}</td>
+		    {% for answer in question.answers %}
+			    <td>{{ form_radio(survey.id ~ 'x' ~ group.id ~ 'x' ~ question.id ~ '_' ~ sub_question.id, answer.value, false) }}</td>
+			{% endfor %}
+		<tr>
 	{% endfor %}
-{% endfor %}
+</table>
