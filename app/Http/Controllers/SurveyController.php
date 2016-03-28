@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Survey;
+use App\Models\Participant;
 
 class SurveyController extends Controller
 {
@@ -30,9 +31,23 @@ class SurveyController extends Controller
             ->with('group', $survey->groups->first());
     }
 
-    public function postGroup()
+    public function postGroup($surveySlug, $groupSlug, Request $request)
     {
+        $survey = Survey::where('slug', $surveySlug)->first();
 
+        $participant = new Participant;
+        $participant->setTable('participants_'.$survey->id);
+        $participant = $participant->find(234); //todo - find the session participant
+
+        $attributes = array_keys($participant->getAttributes());
+
+        foreach ($attributes as $key => $column_name) {
+            if ($request->input($column_name)) {
+                $participant->$column_name = $request->input($column_name);
+            }
+        }
+
+        $participant->save();
     }
 
     public function getComplete($slug)
