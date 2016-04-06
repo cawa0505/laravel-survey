@@ -8,6 +8,7 @@ class Group extends Survey
 {
     protected $fillable = [
         'survey_id',
+        'slug',
         'text',
         'small_text',
         'order',

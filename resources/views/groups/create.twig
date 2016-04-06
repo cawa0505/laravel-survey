@@ -1,0 +1,25 @@
+{% extends '../templates/default.twig' %}
+
+{% block content %}
+
+    {{ form_open({url: ['surveys', '1','groups']}) }}
+
+	    <div class="form-group">
+	    	<label for="slug">Slug</label>
+	    	{{ form_textarea('slug') }}
+		</div>
+
+        <div class="form-group">
+        	<label for="text">Text</label>
+        	{{ form_textarea('text') }}
+    	</div>
+
+        <div class="form-group">
+        	<label for="small_text">Small text</label>
+        	{{ form_textarea('small_text') }}
+    	</div>
+
+        {{ form_submit() }}
+    {{ form_close() }}
+
+{% endblock %}

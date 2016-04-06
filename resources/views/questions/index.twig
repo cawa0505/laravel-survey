@@ -1,0 +1,14 @@
+{% extends '../templates/default.twig' %}
+
+{% block content %}
+
+	{% for question in questions %}
+        <h1>{{ question.text }}</h1>
+	    <h2>{{ question.small_text }}</h2>
+
+	    <p>{{ question.type }}</p>
+
+	    <hr>
+    {% endfor %}
+
+{% endblock %}
