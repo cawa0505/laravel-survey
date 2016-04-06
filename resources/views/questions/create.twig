@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    {{ form_open({url: ['surveys', '1', 'groups', '1', 'questions']}) }}
+    {{ form_open({url: ['surveys', survey.id, 'groups', group.id, 'questions']}) }}
 
 	    <div class="form-group">
 	    	<label for="type">Type</label>
