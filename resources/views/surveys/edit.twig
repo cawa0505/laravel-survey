@@ -1,0 +1,83 @@
+{% extends '../templates/default.twig' %}
+
+{% block content %}
+
+	{{ form_open({url: ['admin', 'surveys', survey.id]}) }}
+
+	    <input type="hidden" name="_method" value="PATCH">
+
+	    <div class="form-group">
+	        <label for="slug">Slug</label>
+	    	{{ form_textarea('slug', survey.slug) }}
+	    </div>
+
+	    <div class="form-group">
+        	<label for="text">Text</label>
+        	{{ form_textarea('text', survey.text) }}
+    	</div>
+
+        <div class="form-group">
+        	<label for="small_text">Small text</label>
+        	{{ form_textarea('small_text', survey.small_text) }}
+    	</div>
+
+        <div class="form-group">
+        	<label for="admin_name">Admin name</label>
+        	{{ form_textarea('admin_name', survey.admin_name) }}
+    	</div>
+
+        <div class="form-group">
+        	<label for="admin_email">Admin email</label>
+        	{{ form_textarea('admin_email', survey.admin_email) }}
+    	</div>
+
+        <div class="form-group">
+        	{{ form_radio('active', 1, survey.active == true ? true : false ) }} Yes
+        	{{ form_radio('active', 0, survey.active == false ? true : false ) }} No
+    	</div>
+
+        <div class="form-group">
+        	<label for="expires">Expires</label>
+        	{{ form_textarea('expires', survey.expires) }}
+    	</div>
+
+        <div class="form-group">
+        	<label for="startdate">Startdate</label>
+        	{{ form_textarea('startdate', survey.startdate) }}
+    	</div>
+
+        <div class="form-group">
+        	{{ form_radio('anonymized', 1, survey.anonymized == true ? true : false ) }} Yes
+        	{{ form_radio('anonymized', 0, survey.anonymized == false ? true : false ) }} No
+    	</div>
+
+        <div class="form-group">
+        	{{ form_radio('allow_registration', 1, survey.allow_registration == true ? true : false ) }} Yes
+        	{{ form_radio('allow_registration', 0, survey.allow_registration == false ? true : false ) }} No
+    	</div>
+
+        <div class="form-group">
+        	<label for="description_text">Description text</label>
+        	{{ form_textarea('description_text', survey.description_text) }}
+    	</div>
+
+        <div class="form-group">
+        	<label for="welcome_text">Welcome text</label>
+        	{{ form_textarea('welcome_text', survey.welcome_text) }}
+    	</div>
+
+        <div class="form-group">
+        	<label for="end_text">End text</label>
+        	{{ form_textarea('end_text', survey.end_text) }}
+    	</div>
+
+        <div class="form-group">
+        	<label for="url_callback">Url callback</label>
+        	{{ form_textarea('url_callback', survey.url_callback) }}
+    	</div>
+
+        {{ form_submit() }}
+
+    {{ form_close() }}
+
+{% endblock %}

@@ -1,10 +1,14 @@
 <?php
 
-Route::resource('surveys', 'SurveyController');
+Route::group(['prefix' => 'admin'], function () {
 
-Route::resource('surveys/{survey}/groups', 'GroupController');
+	Route::resource('surveys', 'SurveyController');
 
-Route::resource('surveys/{survey}/groups/{group}/questions', 'QuestionController');
+	Route::resource('surveys/{survey}/groups', 'GroupController');
+
+	Route::resource('surveys/{survey}/groups/{group}/questions', 'QuestionController');
+
+});
 Route::get('/{survey}/welcome', [
     'uses' => 'SurveyController@getStart'
 ]);

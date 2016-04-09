@@ -109,10 +109,8 @@ class SurveyController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show(Survey $survey)
     {
-        $survey = Survey::find($id);
-
         return view('surveys.show')
             ->with('survey', $survey);
     }
@@ -123,9 +121,13 @@ class SurveyController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function edit(Survey $survey)
     {
-        //
+        //to-do
+        //can't edit certain fields if survey is "active"
+
+        return view('surveys.edit')
+            ->with('survey', $survey);
     }
 
     /**
@@ -134,9 +136,12 @@ class SurveyController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request, Survey $survey)
     {
-        //
+        //to-do
+        //update the survey
+
+        dd($request);
     }
 
     /**
@@ -145,8 +150,13 @@ class SurveyController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Survey $survey)
     {
-        //
+        $survey->delete();
+
+        //to-do
+        // delete all the associated groups, questions and answers as well. (maybe also the participants table)
+
+        return redirect('admin/surveys');
     }
 }

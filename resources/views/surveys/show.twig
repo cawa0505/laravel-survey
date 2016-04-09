@@ -8,4 +8,9 @@
     <p>{{ survey.description_text }}</p>
     <p>{{ survey.welcome_text }}</p>
 
+    {{ form_open({url: ['admin', 'surveys', survey.id]}) }}
+    	<input type="hidden" name="_method" value="DELETE">
+		{{ form_submit('Delete') }}
+	{{ form_close() }}
+
 {% endblock %}
