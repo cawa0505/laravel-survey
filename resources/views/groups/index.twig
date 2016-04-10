@@ -8,6 +8,9 @@
 
 	    <p>{{ group.slug }}</p>
 
+	    <a class="btn btn-small btn-success" href="/admin/surveys/{{ survey.id }}/groups/{{ group.id }}">Show</a>
+        <a class="btn btn-small btn-info" href="/admin/surveys/{{ survey.id }}/groups/{{ group.id }}/edit">Edit</a>
+
 	    <hr>
     {% endfor %}
 

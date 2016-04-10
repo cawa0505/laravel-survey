@@ -19,6 +19,7 @@ class CreateGroupsTable extends Migration
             $table->longText('text');
             $table->mediumText('small_text')->nullable();
             $table->integer('order');
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('survey_id')->references('id')->on('surveys');

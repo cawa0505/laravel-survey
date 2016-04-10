@@ -7,4 +7,9 @@
 
     <p>{{ group.slug }}</p>
 
+    {{ form_open({url: ['admin', 'surveys', survey.id, 'groups', group.id]}) }}
+    	<input type="hidden" name="_method" value="DELETE">
+		{{ form_submit('Delete') }}
+	{{ form_close() }}
+
 {% endblock %}

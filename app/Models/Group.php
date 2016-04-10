@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Group extends Survey
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'survey_id',
         'slug',
@@ -13,6 +16,8 @@ class Group extends Survey
         'small_text',
         'order',
     ];
+
+    protected $dates = ['deleted_at'];
 
     public function survey()
     {

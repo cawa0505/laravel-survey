@@ -20,6 +20,7 @@ class GroupController extends Controller
         $groups = $survey->groups;
 
         return view('groups.index')
+            ->with('survey', $survey)
             ->with('groups', $groups);
     }
 
@@ -30,7 +31,8 @@ class GroupController extends Controller
      */
     public function create(Survey $survey)
     {
-        return view('groups.create');
+        return view('groups.create')
+            ->with('survey', $survey);
     }
 
     /**
@@ -55,11 +57,13 @@ class GroupController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show(Survey $survey, $id)
+    public function show(Survey $survey, Group $group)
     {
-        $group = $survey->groups()->where('groups.id', $id)->first();
+        //to do - can keep this or change it to an if which throws error
+        //$group = $survey->groups()->where('groups.id', $group->id)->first();
 
         return view('groups.show')
+            ->with('survey', $survey)
             ->with('group', $group);
     }
 
@@ -69,9 +73,11 @@ class GroupController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function edit(Survey $survey, Group $group)
     {
-        //
+        return view('groups.edit')
+            ->with('survey', $survey)
+            ->with('group', $group);
     }
 
     /**
@@ -80,9 +86,17 @@ class GroupController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request, Survey $survey, Group $group)
     {
-        //
+        foreach ($group->getFillable() as $key) {
+            if($request->input($key)) {
+                $group->$key = $request->input($key);
+            }
+        }
+
+        $group->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -91,8 +105,14 @@ class GroupController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Survey $survey, Group $group)
     {
-        //
+        $group->delete();
+
+        //to-do
+        // delete all the associated groups, questions and answers as well. (maybe also the participants table)
+        // redirect back to groups
+
+        return redirect('admin/surveys');
     }
 }

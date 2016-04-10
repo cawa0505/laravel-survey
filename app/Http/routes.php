@@ -4,9 +4,9 @@ Route::group(['prefix' => 'admin'], function () {
 
 	Route::resource('surveys', 'SurveyController');
 
-	Route::resource('surveys/{survey}/groups', 'GroupController');
+	Route::resource('surveys.groups', 'GroupController');
 
-	Route::resource('surveys/{survey}/groups/{group}/questions', 'QuestionController');
+    Route::resource('surveys.groups.questions', 'QuestionController');
 
 });
 Route::get('/{survey}/welcome', [
