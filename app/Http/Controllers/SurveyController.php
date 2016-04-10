@@ -138,10 +138,15 @@ class SurveyController extends Controller
      */
     public function update(Request $request, Survey $survey)
     {
-        //to-do
-        //update the survey
+        foreach ($survey->getFillable() as $key) {
+            if($request->input($key)) {
+                $survey->$key = $request->input($key);
+            }
+        }
 
-        dd($request);
+        $survey->save();
+
+        return redirect()->back();
     }
 
     /**
