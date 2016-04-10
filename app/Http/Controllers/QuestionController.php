@@ -20,6 +20,7 @@ class QuestionController extends Controller
     {
         $questions = $survey->questions;
 
+        // i don't like this. it should be in a model (question or survey though?)
         $questions = $questions->where('group_id', $group->id)->where('parent_question_id', null);
 
         /*foreach ($questions as $question) {
@@ -39,7 +40,9 @@ class QuestionController extends Controller
      */
     public function create(Survey $survey, Group $group)
     {
-        return view('questions.create');
+        return view('questions.create')
+            ->with('survey', $survey)
+            ->with('group', $group);
     }
 
     /**
@@ -53,9 +56,9 @@ class QuestionController extends Controller
 
         $input['group_id'] = $group->id;
 
-        Question::create($input);
+        $question = Question::create($input);
 
-        return redirect()->back();
+        return redirect('surveys/'.$survey->id.'/groups/'.$group->id.'/questions/'.$question->id);
     }
 
     /**
@@ -64,11 +67,17 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show(Survey $survey, Group $group, $id)
+    public function show(Survey $survey, Group $group, Question $question)
     {
-        $question = $survey->questions()->where('questions.id', $id)->first();
+        //$question = $survey->questions()->where('questions.id', $id)->first();
+
+        // to do - make this method in the model. attach to object and do an if
+        // statement in the view file. nice!
+        //$question->subquestionsRequired()
 
         return view('questions.show')
+            ->with('survey', $survey)
+            ->with('group', $group)
             ->with('question', $question);
     }
 
@@ -78,9 +87,12 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function edit(Survey $survey, Group $group, Question $question)
     {
-        //
+        return view('questions.edit')
+            ->with('survey', $survey)
+            ->with('group', $group)
+            ->with('question', $question);
     }
 
     /**
@@ -89,9 +101,17 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request, Survey $survey, Group $group, Question $question)
     {
-        //
+        foreach ($question->getFillable() as $key) {
+            if($request->input($key)) {
+                $question->$key = $request->input($key);
+            }
+        }
+
+        $question->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -100,8 +120,10 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Survey $survey, Group $group, Question $question)
     {
-        //
+        $question->delete();
+
+        return redirect('admin/surveys');
     }
 }

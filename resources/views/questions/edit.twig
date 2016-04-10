@@ -1,0 +1,28 @@
+{% extends '../templates/default.twig' %}
+
+{% block content %}
+
+	{{ form_open({url: ['admin', 'surveys', survey.id, 'groups', group.id, 'questions', question.id]}) }}
+
+	    <input type="hidden" name="_method" value="PATCH">
+
+        <div class="form-group">
+	        <label for="type">Type</label>
+	    	{{ form_textarea('type', question.type) }}
+	    </div>
+
+	    <div class="form-group">
+        	<label for="text">Text</label>
+        	{{ form_textarea('text', question.text) }}
+    	</div>
+
+        <div class="form-group">
+        	<label for="small_text">Small text</label>
+        	{{ form_textarea('small_text', question.small_text) }}
+    	</div>
+
+        {{ form_submit() }}
+
+    {{ form_close() }}
+
+{% endblock %}
