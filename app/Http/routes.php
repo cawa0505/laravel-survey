@@ -1,5 +1,9 @@
 <?php
 
+Route::group(['middleware' => ['web']], function () {
+    Route::auth();
+});
+
 Route::get('/{survey}/welcome', [
     'uses' => 'SurveyController@getStart'
 ]);
