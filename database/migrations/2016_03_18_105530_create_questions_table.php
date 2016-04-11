@@ -22,6 +22,7 @@ class CreateQuestionsTable extends Migration
             //'choice','list_dropdown','list_radio','array','date_time','gender','numerical','boilerplate','yes_no','huge_free_text','long_free_text','short_free_text','multiple_choice'
             $table->integer('order');
             $table->boolean('mandatory');
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('group_id')->references('id')->on('groups');

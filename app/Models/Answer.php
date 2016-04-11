@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Answer extends Question
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'question_id',
         'value',
@@ -14,6 +17,8 @@ class Answer extends Question
         'visable',
         'order',
     ];
+
+    protected $dates = ['deleted_at'];
 
     public function question()
     {

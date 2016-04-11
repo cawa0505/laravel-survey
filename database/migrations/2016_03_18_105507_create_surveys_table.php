@@ -20,14 +20,15 @@ class CreateSurveysTable extends Migration
             $table->string('admin_name', 100);
             $table->string('admin_email');
             $table->boolean('active');
-            $table->dateTime('expires')->nullable();
-            $table->dateTime('startdate')->nullable();
             $table->boolean('anonymized');
             $table->boolean('allow_registration');
             $table->longText('description_text')->nullable();
             $table->longText('welcome_text')->nullable();
             $table->longText('end_text')->nullable();
             $table->string('url_callback')->nullable();
+            $table->dateTime('starts_at')->nullable();
+            $table->dateTime('expires_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
