@@ -9,6 +9,12 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('surveys.groups.questions', 'QuestionController');
 
 });
+
+Route::group(['middleware' => ['web']], function () {
+    Route::auth();
+    Route::get('/home', 'HomeController@index');
+});
+
 Route::get('/{survey}/welcome', [
     'uses' => 'SurveyController@getStart'
 ]);
