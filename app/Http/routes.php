@@ -1,6 +1,10 @@
 <?php
 
-Route::group(['prefix' => 'admin'], function () {
+Route::get('/', function () {
+    echo "welcome";
+});
+
+Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth']], function () {
 
 	Route::resource('surveys', 'SurveyController');
 
@@ -34,10 +38,4 @@ Route::get('/{survey}/{group}', [
 
 Route::post('/{survey}/{group}', [
     'uses' => 'SurveyController@postGroup'
-]);
-
-Route::get('/admin', [
-    'as' =>'admin.index',
-    'uses' => 'AdminController@index',
-    'middleware' => ['auth'],
 ]);
