@@ -2,17 +2,56 @@
 
 {% block content %}
 
-	{% for survey in surveys %}
-        <h1>{{ survey.text }}</h1>
-	    <h2>{{ survey.small_text }}</h2>
+	<div class="container">
 
-	    <p>{{ survey.description_text }}</p>
-	    <p>{{ survey.welcome_text }}</p>
+		<div class="row">
+		    <div class="col-md-12">
+		  		<a class="btn btn-info" href="{{ route('admin.surveys.create') }}">Create new survey</a>
+		  	</div>
+		</div>
 
-        <a class="btn btn-small btn-success" href="{{ route('admin.surveys.show', [survey.id]) }}">Show</a>
-        <a class="btn btn-small btn-info" href="{{ route('admin.surveys.edit', [survey.id]) }}">Edit</a>
+		<hr>
 
-	    <hr>
-    {% endfor %}
+		<div class="row">
+		    <div class="col-md-12">
 
+				{% for survey in surveys %}
+
+					<div class="panel panel-default">
+
+					  	<div class="panel-heading clearfix">
+						    <div class="btn-group pull-right">
+						        <a class="btn btn-info" href="{{ route('admin.surveys.show', [survey.id]) }}">Show</a>
+						    	<a class="btn btn-info" href="{{ route('admin.surveys.edit', [survey.id]) }}">Edit</a>
+						    	{{ form_open({route: ['admin.surveys.destroy', survey.id], class: "pull-right"}) }}
+							    	<input type="hidden" name="_method" value="DELETE">
+									<button type="submit" class="btn btn-info">Delete</button>
+								{{ form_close() }}
+						    </div>
+					    </div>
+
+					  	<div class="panel-body">
+						    <h1>{{ survey.text }}</h1>
+					        <p>{{ survey.welcome_text }}</p>
+					        <a class="btn btn-small btn-info" href="{{ route('admin.surveys.groups.index', [survey.id]) }}">Manage</a>
+					  	</div>
+
+					  	<div class="panel-footer">
+					  		{% if survey.anonymized %}
+					  			<span class="label label-success">Anonymized</span>
+					  		{% endif %}
+					  		{% if survey.allow_registration %}
+					  			<span class="label label-success">Allow registration</span>
+					  		{% endif %}
+						    {% if survey.active %}
+						    	<span class="label label-success">Active</span>
+						    {% endif %}
+					  	</div>
+					</div>
+			    {% endfor %}
+
+	    	</div>
+		</div>
+
+    </div>
 {% endblock %}

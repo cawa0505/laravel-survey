@@ -2,79 +2,162 @@
 
 {% block content %}
 
-    {{ form_open({url: ['admin', 'surveys']}) }}
+    <div class="container">
 
-	    <div class="form-group">
-	    	<label for="slug">Slug</label>
-	    	{{ form_textarea('slug') }}
-		</div>
+        <div class="panel panel-default">
 
-        <div class="form-group">
-        	<label for="text">Text</label>
-        	{{ form_textarea('text') }}
-    	</div>
+            <div class="panel-heading">
+                <h3 class="panel-title">Create a new survey</h3>
+            </div>
 
-        <div class="form-group">
-        	<label for="small_text">Small text</label>
-        	{{ form_textarea('small_text') }}
-    	</div>
+            <div class="panel-body">
 
-        <div class="form-group">
-        	<label for="admin_name">Admin name</label>
-        	{{ form_textarea('admin_name') }}
-    	</div>
+                {{ form_open({route: ['admin.surveys.store']}) }}
 
-        <div class="form-group">
-        	<label for="admin_email">Admin email</label>
-        	{{ form_textarea('admin_email') }}
-    	</div>
+            	    <div class="form-group{{ errors.has('slug') ? ' has-error' : '' }}">
+                        <label for="type">Slug:</label>
+                        <input class="form-control" name="slug">
+                        {% if errors.has('slug') %}
+                            <span class="help-block">
+                                <strong>{{ errors.first('slug') }}</strong>
+                            </span>
+                        {% endif %}
+                    </div>
 
-        <div class="form-group">
-        	{{ form_radio('active', 1, false) }} Yes
-        	{{ form_radio('active', 0, false) }} No
-    	</div>
+                    <div class="form-group{{ errors.has('text') ? ' has-error' : '' }}">
+                        <label for="type">Text:</label>
+                        <textarea class="form-control" rows="5" name="text"></textarea>
+                        {% if errors.has('text') %}
+                            <span class="help-block">
+                                <strong>{{ errors.first('text') }}</strong>
+                            </span>
+                        {% endif %}
+                    </div>
 
-        <div class="form-group">
-        	<label for="expires">Expires</label>
-        	{{ form_textarea('expires_at') }}
-    	</div>
+                    <div class="form-group{{ errors.has('small_text') ? ' has-error' : '' }}">
+                        <label for="type">Small text:</label>
+                        <textarea class="form-control" rows="3" name="small_text"></textarea>
+                        {% if errors.has('small_text') %}
+                            <span class="help-block">
+                                <strong>{{ errors.first('small_text') }}</strong>
+                            </span>
+                        {% endif %}
+                    </div>
 
-        <div class="form-group">
-        	<label for="startdate">Startdate</label>
-        	{{ form_textarea('starts_at') }}
-    	</div>
+                    <div class="form-group{{ errors.has('admin_name') ? ' has-error' : '' }}">
+                        <label for="type">Admin name:</label>
+                        <input class="form-control" name="admin_name">
+                        {% if errors.has('admin_name') %}
+                            <span class="help-block">
+                                <strong>{{ errors.first('admin_name') }}</strong>
+                            </span>
+                        {% endif %}
+                    </div>
 
-        <div class="form-group">
-        	{{ form_radio('anonymized', 1, false) }} Yes
-        	{{ form_radio('anonymized', 0, false) }} No
-    	</div>
+                    <div class="form-group{{ errors.has('admin_email') ? ' has-error' : '' }}">
+                        <label for="type">Admin email:</label>
+                        <input class="form-control" name="admin_email">
+                        {% if errors.has('admin_email') %}
+                            <span class="help-block">
+                                <strong>{{ errors.first('admin_email') }}</strong>
+                            </span>
+                        {% endif %}
+                    </div>
 
-        <div class="form-group">
-        	{{ form_radio('allow_registration', 1, false) }} Yes
-        	{{ form_radio('allow_registration', 0, false) }} No
-    	</div>
+                    <div class="form-group">
+                        <label for="starts_at">Start date</label>
+                        <input class="form-control" name="starts_at">
+                        {% if errors.has('starts_at') %}
+                            <span class="help-block">
+                                <strong>{{ errors.first('starts_at') }}</strong>
+                            </span>
+                        {% endif %}
+                    </div>
 
-        <div class="form-group">
-        	<label for="description_text">Description text</label>
-        	{{ form_textarea('description_text') }}
-    	</div>
+                    <div class="form-group">
+                    	<label for="expires_at">Expires at</label>
+                    	<input class="form-control" name="expires_at">
+                        {% if errors.has('expires_at') %}
+                            <span class="help-block">
+                                <strong>{{ errors.first('expires_at') }}</strong>
+                            </span>
+                        {% endif %}
+                	</div>
 
-        <div class="form-group">
-        	<label for="welcome_text">Welcome text</label>
-        	{{ form_textarea('welcome_text') }}
-    	</div>
+                    <div class="form-group">
+                        <label>Active</label>
+                        <div class="radio">
+                            <label>
+                                <input type="checkbox" value="1" name="active"> Yes
+                            </label>
+                        </div>
+                    </div>
 
-        <div class="form-group">
-        	<label for="end_text">End text</label>
-        	{{ form_textarea('end_text') }}
-    	</div>
+                    <div class="form-group">
+                        <label>Anonymous</label>
+                        <div class="radio">
+                            <label>
+                                <input type="checkbox" value="1" name="anonymized"> Yes
+                            </label>
+                        </div>
+                    </div>
 
-        <div class="form-group">
-        	<label for="url_callback">Url callback</label>
-        	{{ form_textarea('url_callback') }}
-    	</div>
+                    <div class="form-group">
+                        <label>Allow registration</label>
+                        <div class="radio">
+                            <label>
+                                <input type="checkbox" value="1" name="allow_registration"> Yes
+                            </label>
+                        </div>
+                    </div>
 
-        {{ form_submit() }}
-    {{ form_close() }}
+                    <div class="form-group{{ errors.has('description_text') ? ' has-error' : '' }}">
+                        <label for="type">Description text:</label>
+                        <textarea class="form-control" rows="5" name="description_text"></textarea>
+                        {% if errors.has('description_text') %}
+                            <span class="help-block">
+                                <strong>{{ errors.first('description_text') }}</strong>
+                            </span>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group{{ errors.has('welcome_text') ? ' has-error' : '' }}">
+                        <label for="type">Welcome text:</label>
+                        <textarea class="form-control" rows="5" name="welcome_text"></textarea>
+                        {% if errors.has('welcome_text') %}
+                            <span class="help-block">
+                                <strong>{{ errors.first('welcome_text') }}</strong>
+                            </span>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group{{ errors.has('end_text') ? ' has-error' : '' }}">
+                        <label for="type">End text:</label>
+                        <textarea class="form-control" rows="5" name="end_text"></textarea>
+                        {% if errors.has('end_text') %}
+                            <span class="help-block">
+                                <strong>{{ errors.first('end_text') }}</strong>
+                            </span>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group{{ errors.has('url_callback') ? ' has-error' : '' }}">
+                        <label for="type">Url callback:</label>
+                        <input class="form-control" name="url_callback">
+                        {% if errors.has('url_callback') %}
+                            <span class="help-block">
+                                <strong>{{ errors.first('url_callback') }}</strong>
+                            </span>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </div>
+
+                {{ form_close() }}
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

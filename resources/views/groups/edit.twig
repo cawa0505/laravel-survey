@@ -2,27 +2,57 @@
 
 {% block content %}
 
-	{{ form_open({url: ['admin', 'surveys', survey.id, 'groups', group.id]}) }}
+    <div class="container">
 
-        <input type="hidden" name="_method" value="PATCH">
+        <div class="panel panel-default">
 
-	    <div class="form-group">
-	        <label for="slug">Slug</label>
-	    	{{ form_textarea('slug', group.slug) }}
-	    </div>
+            <div class="panel-heading">
+                <h3 class="panel-title">Edit this group</h3>
+            </div>
 
-	    <div class="form-group">
-        	<label for="text">Text</label>
-        	{{ form_textarea('text', group.text) }}
-    	</div>
+            <div class="panel-body">
 
-        <div class="form-group">
-        	<label for="small_text">Small text</label>
-        	{{ form_textarea('small_text', group.small_text) }}
-    	</div>
+                {{ form_open({route: ['admin.surveys.groups.update', survey.id, group.id]}) }}
 
-        {{ form_submit() }}
+                    <input type="hidden" name="_method" value="PATCH">
 
-    {{ form_close() }}
+            	    <div class="form-group{{ errors.has('slug') ? ' has-error' : '' }}">
+                        <label for="type">Slug:</label>
+                        <input class="form-control" name="slug" value="{{ group.slug }}">
+                        {% if errors.has('slug') %}
+                            <span class="help-block">
+                                <strong>{{ errors.first('slug') }}</strong>
+                            </span>
+                        {% endif %}
+                    </div>
+
+            	    <div class="form-group{{ errors.has('text') ? ' has-error' : '' }}">
+                        <label for="type">Text:</label>
+                        <input class="form-control" name="text" value="{{ group.text }}">
+                        {% if errors.has('text') %}
+                            <span class="help-block">
+                                <strong>{{ errors.first('text') }}</strong>
+                            </span>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group{{ errors.has('small_text') ? ' has-error' : '' }}">
+                        <label for="type">Small text:</label>
+                        <textarea class="form-control" rows="3" name="small_text">{{ survey.small_text }}</textarea>
+                        {% if errors.has('small_text') %}
+                            <span class="help-block">
+                                <strong>{{ errors.first('small_text') }}</strong>
+                            </span>
+                        {% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+
+                {{ form_close() }}
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

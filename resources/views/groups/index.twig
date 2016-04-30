@@ -2,16 +2,51 @@
 
 {% block content %}
 
-	{% for group in groups %}
-        <h1>{{ group.text }}</h1>
-	    <h2>{{ group.small_text }}</h2>
+	<div class="container">
 
-	    <p>{{ group.slug }}</p>
+		<div class="row">
+		    <div class="col-md-12">
+		  		<a class="btn btn-info" href="{{ route('admin.surveys.groups.create', [survey.id]) }}">Create new group</a>
+		  	</div>
+		</div>
 
-	    <a class="btn btn-small btn-success" href="/admin/surveys/{{ survey.id }}/groups/{{ group.id }}">Show</a>
-        <a class="btn btn-small btn-info" href="/admin/surveys/{{ survey.id }}/groups/{{ group.id }}/edit">Edit</a>
+		<hr>
 
-	    <hr>
-    {% endfor %}
+		<div class="row">
+		    <div class="col-md-12">
 
+				{% for group in groups %}
+
+					<div class="panel panel-default">
+
+					  	<div class="panel-heading clearfix">
+						    <div class="btn-group pull-right">
+						        <a class="btn btn-small btn-success" href="/admin/surveys/{{ survey.id }}/groups/{{ group.id }}">Show</a>
+        						<a class="btn btn-small btn-info" href="/admin/surveys/{{ survey.id }}/groups/{{ group.id }}/edit">Edit</a>
+						    	{{ form_open({route: ['admin.surveys.groups.destroy', survey.id, group.id], class: "pull-right"}) }}
+							    	<input type="hidden" name="_method" value="DELETE">
+									<button type="submit" class="btn btn-info">Delete</button>
+								{{ form_close() }}
+						    </div>
+					    </div>
+
+					  	<div class="panel-body">
+						    <h1>{{ group.text }}</h1>
+	    					<p>{{ group.small_text }}</p>
+	    					<p>{{ group.slug }}</p>
+	    					<a class="btn btn-small btn-info" href="{{ route('admin.surveys.groups.questions.index', [survey.id, group.id]) }}">Manage</a>
+					  	</div>
+
+					  	<div class="panel-footer">
+
+					  	</div>
+
+					</div>
+
+			    {% endfor %}
+
+	    	</div>
+		</div>
+
+    </div>
 {% endblock %}
