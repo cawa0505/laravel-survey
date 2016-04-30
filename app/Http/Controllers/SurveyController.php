@@ -96,6 +96,12 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate(
+            $request,
+            $this->getValidationRules(),
+            $this->getValidationMessages()
+        );
+
         $input = $request->input();
 
         Survey::create($input);
@@ -138,6 +144,12 @@ class SurveyController extends Controller
      */
     public function update(Request $request, Survey $survey)
     {
+        $this->validate(
+            $request,
+            $this->getValidationRules("update"),
+            $this->getValidationMessages()
+        );
+
         foreach ($survey->getFillable() as $key) {
             if($request->input($key)) {
                 $survey->$key = $request->input($key);
@@ -163,5 +175,46 @@ class SurveyController extends Controller
         // delete all the associated groups, questions and answers as well. (maybe also the participants table)
 
         return redirect('admin/surveys');
+    }
+
+    private function getValidationRules($method = null)
+    {
+        $validation_rules = [];
+
+        $validation_rules = [
+            'slug' => 'required|alpha_dash|string|unique:surveys',
+            'text' => 'required|string',
+            'small_text' => 'string',
+            'admin_name' => 'required|string|max:100',
+            'admin_email' => 'required|email|max:255',
+            'active' => 'boolean',
+            'expires_at' => 'required|date',
+            'starts_at' => 'required|date',
+            'anonymized' => 'boolean',
+            'allow_registration' => 'boolean',
+            'description_text' => 'string',
+            'welcome_text' => 'required',
+            'end_text' => 'required|',
+            'url_callback' => 'url',
+        ];
+
+        if($method === "update") {
+            $validation_rules['slug'] = 'required|alpha_dash|string';
+        }
+
+        return $validation_rules;
+
+    }
+
+    private function getValidationMessages()
+    {
+        $validation_messages = [];
+
+        $validation_messages = [
+            'required' => 'Required field',
+            'admin_email.required' => 'An e-mail address is required',
+        ];
+
+        return $validation_messages;
     }
 }
